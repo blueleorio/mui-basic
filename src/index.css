@@ -20,7 +20,7 @@ code {
 }
 
 .container {
-  background-color: #111;
+  /* background-color: #111; */
   height: 100vh;
   color: white;
 }
