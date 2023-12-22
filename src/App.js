@@ -7,6 +7,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import JobCard from "./components/JobCard"; // Update the import statement
 import Box from "@mui/system/Box";
+import "./app.css";
 
 export default function App() {
   const darkTheme = createTheme({
@@ -34,8 +35,8 @@ export default function App() {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <SearchAppBar />
-      <Container maxWidth="md">
-        <Box mt={3}>
+      <Container maxWidth="lg" className="container">
+        <Box mt={3} width="100%">
           <Grid container spacing={3}>
             {jobData.map((job) => (
               <Grid key={job.id} item xs={12} sm={6} md={4}>
@@ -44,8 +45,8 @@ export default function App() {
             ))}
           </Grid>
         </Box>
+        <Pagination count={3} variant="outlined" color="primary" />
       </Container>
-      <Pagination count={10} variant="outlined" color="primary" />
     </ThemeProvider>
   );
 }
