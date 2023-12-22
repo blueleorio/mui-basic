@@ -1,23 +1,50 @@
 // import "./App.css";
+import React from "react";
 import SearchAppBar from "./components/Appbar";
-// import GridLayout from "./layouts/GridLayout";
 import Container from "@mui/material/Container";
-import { Box, Grid, Pagination, Paper, Typography } from "@mui/material";
+import { Pagination, Grid } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-
-const darkTheme = createTheme({
-  palette: {
-    mode: "dark",
-  },
-});
+import JobCard from "./components/JobCard"; // Update the import statement
+import Box from "@mui/system/Box";
 
 export default function App() {
+  const darkTheme = createTheme({
+    palette: {
+      mode: "dark",
+    },
+  });
+
+  const [jobData, setJobData] = React.useState([]);
+
+  React.useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/jobs.json"); // Assuming it's in the public folder
+        const data = await response.json();
+        setJobData(data);
+      } catch (error) {
+        console.error("Error fetching job data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <SearchAppBar />
-      <main>This app is using the dark mode</main>
+      <Container maxWidth="md">
+        <Box mt={3}>
+          <Grid container spacing={3}>
+            {jobData.map((job) => (
+              <Grid key={job.id} item xs={12} sm={6} md={4}>
+                <JobCard job={job} />
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
+      </Container>
       <Pagination count={10} variant="outlined" color="primary" />
     </ThemeProvider>
   );
