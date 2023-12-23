@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Grid, Pagination, Paper } from "@mui/material";
+import { Box, Grid, Pagination, Paper, Chip } from "@mui/material";
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
 
 function GridLayout() {
