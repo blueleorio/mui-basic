@@ -35,7 +35,11 @@ export default function App() {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <SearchAppBar />
-      <Container maxWidth="lg" className="container">
+      <Container
+        maxWidth="lg"
+        className="container"
+        sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+      >
         <Box mt={3} width="100%">
           <Grid container spacing={3}>
             {jobData.map((job) => (
