@@ -7,28 +7,45 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/system/Box";
 import Chip from "@mui/material/Chip";
-
+import Grid from "@mui/material/Grid";
 const JobCard = ({ job }) => {
   return (
-    <Card sx={{ minWidth: 275 }}>
+    <Card
+      sx={{
+        minWidth: 300,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
       <CardContent>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          Posted Date: {job.postedDate}
-        </Typography>
-        <Typography variant="h5" component="div">
+        <Typography variant="h6" component="div">
           {job.title}
         </Typography>
+        <Typography sx={{ fontSize: 12 }} color="text.secondary" gutterBottom>
+          Posted Date: {job.postedDate}
+        </Typography>
+        <Box>
+          {job.skills.slice(0, 4).map((skill) => (
+            <Chip
+              key={skill}
+              label={skill}
+              color="error"
+              size="small"
+              sx={{ margin: "4px" }}
+            />
+          ))}
+        </Box>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
           Location: {job.city}
         </Typography>
-        <Typography variant="body2">
-          {job.description}
-          <br />
-          {'"Skills: ' + job.skills.join(", ") + '"'}
-        </Typography>
+        <Typography variant="body2">{job.description}</Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <Button size="small" color="warning" variant="contained">
+          Learn More
+        </Button>
       </CardActions>
     </Card>
   );
