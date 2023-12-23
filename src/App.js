@@ -7,7 +7,6 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import JobCard from "./components/JobCard"; // Update the import statement
 import Box from "@mui/system/Box";
-import "./app.css";
 
 export default function App() {
   const darkTheme = createTheme({
